@@ -21,6 +21,7 @@
 }
 
 .tools{
+    align-self: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -30,6 +31,7 @@
 }
 
 .grid{
+    box-sizing: content-box;
     display: flex;
     flex-wrap: wrap;
     width: 600px;
