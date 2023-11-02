@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header{
+    font-size: 36px;
+    text-align: center;
+    padding: 20px 2px;
+    margin: 10px 2px;
+    border: 1px solid red;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+    border: 1px solid black;
+    margin: 0 2px;
+}
+
+.tools{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 400px;
+    border: 1px solid violet;
+    align-items: center;
+}
+
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    border: 1px solid chocolate;
+}
+
+.btn{
+    width: 90px;
+    height: 50px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 12px  rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    text-wrap: wrap;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sliderBox{
+    text-align: center;
+}
+
+.normalMode{
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.normalMode::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 3px solid black;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover, .normalMode:hover{
+    transform: scale(1.1);
+}
+
+.footer{
+    font-size: 24px;
+    text-align: center;
+    padding: 40px 0px;
+    margin: 4px 2px;
+    border: 1px solid green;
+}
