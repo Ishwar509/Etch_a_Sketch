@@ -16,14 +16,77 @@ let isRainbowMode = false;
 
 setupGrid(size);
 
+setupEventListeners();
+
+function setupEventListeners(){
+    slider.addEventListener('input', () => {
+        rangeValue.textContent = `${slider.value} x ${slider.value}`;
+    });
+
+    slider.addEventListener('change', () => {
+        grid.innerHTML = "";
+        setupGrid(Number(slider.value));
+    });
+
+    resetButton.addEventListener('click', resetGrid);
+
+    rainbowMode.addEventListener('click', () =>{
+        rainbowMode.classList.toggle('selected');
+        isRainbowMode ^= true;
+    });
+
+    eraserButton.addEventListener('click', () =>{
+        eraserButton.classList.toggle('selected');
+        isEraser ^= true;
+    });
+}
+
 function setupGrid(size){
     
     for(let i = 0; i < size * size; ++i){
         let cell = document.createElement('div');
         cell.style.width = cell.style.height = `${gridWidth/size}px`;
         cell.style.backgroundColor = 'white';
+        cell.addEventListener('mouseenter', changeCellColor);
         fragment.appendChild(cell);
     }
 
     grid.appendChild(fragment);
+}
+
+function changeCellColor(e){
+    if(isEraser){
+        e.target.style.backgroundColor = 'white';
+        return;
+    }
+
+    e.target.style.backgroundColor = getColor();
+    e.target.style.border = '1px solid white';
+}
+
+function getColor(){
+    if(!isRainbowMode){
+        return normalMode.value;
+    }
+
+    return getRandomColor();
+}
+
+function getRandomColor(){
+    let color = "#";
+
+    for (let i = 0; i < 3; ++i) {
+        let val = (Math.floor(Math.random() * 256)).toString(16);
+        color += ("0" + val).slice(-2);
+    }
+
+    return color;
+}
+
+function resetGrid(){
+    const cellList = grid.children;
+
+    for(let cell of cellList){
+        cell.style.backgroundColor = 'white';
+    }
 }

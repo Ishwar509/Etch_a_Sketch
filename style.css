@@ -73,6 +73,11 @@
     transform: scale(1.1);
 }
 
+.selected{
+    background-color: #5adbb5;
+    transform: scale(1.1);
+}
+
 .footer{
     font-size: 24px;
     text-align: center;
