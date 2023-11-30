@@ -10,6 +10,7 @@ const normalMode = document.querySelector('.normalMode');
 let size = 16;
 let isEraser = false;
 let isRainbowMode = false;
+let isMouseDown = false;
 
 setupGrid(size);
 
@@ -25,6 +26,8 @@ function setupEventListeners(){
         setupGrid(Number(slider.value));
     });
 
+    grid.addEventListener('mouseover', changeCellColor);
+
     resetButton.addEventListener('click', resetGrid);
 
     rainbowMode.addEventListener('click', () =>{
@@ -36,6 +39,14 @@ function setupEventListeners(){
         eraserButton.classList.toggle('selected');
         isEraser ^= true;
     });
+
+    document.addEventListener('mousedown', () =>{
+        isMouseDown = true;
+    });
+
+    document.addEventListener('mouseup', () =>{
+        isMouseDown = false;
+    });
 }
 
 function setupGrid(size){
@@ -44,19 +55,22 @@ function setupGrid(size){
     for(let i = 0; i < size * size; ++i){
         let cell = document.createElement('div');
         cell.style.backgroundColor = 'white';
-        cell.addEventListener('mouseenter', changeCellColor);
+        cell.classList.add('cell');
         grid.appendChild(cell);
     }
 }
 
 function changeCellColor(e){
+    if(!isMouseDown || !e.target.classList.contains('cell')){
+        return;
+    }
+
     if(isEraser){
         e.target.style.backgroundColor = 'white';
         return;
     }
 
     e.target.style.backgroundColor = getColor();
-    e.target.style.border = '1px solid white';
 }
 
 function getColor(){
