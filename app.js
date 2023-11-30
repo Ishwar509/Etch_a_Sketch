@@ -1,14 +1,11 @@
 
-const grid = document.querySelector('.grid');
+const grid = document.querySelector('.grid-container');
 const resetButton = document.querySelector('.reset');
 const rainbowMode = document.querySelector('.rainbowMode');
 const eraserButton = document.querySelector('.eraser');
 const slider = document.querySelector('.slider');
 const rangeValue = document.querySelector('.rangeValue');
 const normalMode = document.querySelector('.normalMode');
-const fragment = document.createDocumentFragment();
-
-const gridWidth = grid.clientWidth;
 
 let size = 16;
 let isEraser = false;
@@ -42,16 +39,14 @@ function setupEventListeners(){
 }
 
 function setupGrid(size){
-    
+    grid.style.gridTemplate = `repeat(${size}, 1fr) / repeat(${size}, 1fr)`;
+
     for(let i = 0; i < size * size; ++i){
         let cell = document.createElement('div');
-        cell.style.width = cell.style.height = `${gridWidth/size}px`;
         cell.style.backgroundColor = 'white';
         cell.addEventListener('mouseenter', changeCellColor);
-        fragment.appendChild(cell);
+        grid.appendChild(cell);
     }
-
-    grid.appendChild(fragment);
 }
 
 function changeCellColor(e){
